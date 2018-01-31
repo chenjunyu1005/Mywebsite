@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>table</title>
+	
+		<script type="text/javascript">
+			window.onload=function(){
+				document.getElementById("addli").onclick=function(){
+					var ulEle=document.getElementById("ul");
+					var addEle= document.createTextNode("World");
+					var createEle =document.createElement("li");
+					ulEle.appendChild(createEle);
+					createEle.appendChild(addEle)
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<font size="7">Welcome Page</font><br />
+		<input type="button" name="back" id="back" value="back to previous page" 
+			onclick="javascript:history.back()"/><br />
+			<br /><br /><br /><br />
+					<input type="button" id="addli" value="Adding Element" />
+
+		<ul id= "ul">
+			<li>Hello</li>
+			<li>Hello</li>
+			<li>Hello</li>
+		</ul>
+	</body>
+</html>

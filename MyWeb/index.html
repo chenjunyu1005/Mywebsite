@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>MyWebsite</title>
+		<!--<link rel="stylesheet" type="text/css" href="../css/style.css"/>-->
+		<style type="text/css">
+			a{
+				text-decoration: none;
+			}
+		</style>
+		<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../js/jquery.validate.min.js" ></script> 
+		<script type="text/javascript">
+		/*function checkform(){
+			var uname= document.getElementById("username").value;
+		    if(uname==""){
+		    	alert("Missing username");
+		    	return false;
+		    }
+		    var upass=document.getElementById("password").value;
+		    if(upass==""){
+		    	alert("Missing password");
+		    	return false;
+		    }
+		    var checkPass=document.getElementById("comfirmpassword").value;
+		    if(checkPass==""){
+		    	alert("Enter password one more time");
+		    	return false;
+		    }
+		    var checkEmail=document.getElementById("email").value;
+		    if(!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(checkEmail)){
+		    	alert("Incorret email format");
+		    	return false;
+		    }
+		    
+		}*/
+		$(function(){
+			$("#register").validate({
+				rules:{
+					username:{
+						required: true,
+						minlength:6
+					},
+					password:{
+					required:true,
+			  	    digits:true		
+					},
+					comfirmpassword:{
+						required:true,
+						equalTo:"[name='password']"
+					},
+					email:{
+						required:true,
+						email:true
+					},
+					name:{
+			        required:true,
+					},
+					sex:{
+                  required:true,
+
+					}
+				},
+				messages:{
+					username:{
+						required:"username can not be empty",
+						minlength:"at least length of 6"
+					},
+					password:{
+					required:"password can not be empty",
+			  	    digits:"has to be digits"	
+					},
+					comfirmpassword:{
+						required:"confirm password can not be empty",
+						equalTo:"password do not match"
+                         
+					},
+					email:{
+						required:"email can not be empty",
+						email:"email format is not correct"
+					},
+					name:{
+			        required:"name can not be empty",
+					},
+					sex:{
+                  required:"required",
+
+					}
+				}
+			});
+		});
+		function init(){
+		    	setInterval("changeImg()",3000);
+//		    	time = setInterval("showAd()",3000);
+		    }
+		
+ 
+            var i=0
+		    function changeImg(){
+		    	i++;
+		    document.getElementById("changepicture").src="../img/"+i+".jpg";
+		    if(i==3){
+		    	i=0;
+		    }
+		    }
+//		    jQuery way
+		    $(function(){
+		    	time = setInterval("showAd()",3000);
+		    })
+		    function showAd(){
+//		    	document.getElementById("showad").style.display="block";
+               $("#showad").slideDown(3000);
+		    	clearInterval(time);
+		    	setInterval("hiddenAd()",3000);
+		    }
+		    function hiddenAd(){
+//		    	document.getElementById("showad").style.display="none";
+                $("#showad").slideUp(3000);
+		    	clearInterval(time);
+		    	
+		    }
+		    /*redirect page */
+		   function redirect(){
+		location.href="top.html";
+		   }
+		   /*function remind(id,inform){
+		   	document.getElementById(id+"span").innerHTML="<font color='black'>"+inform+"</font>"
+		   }
+		   function checkUser(id,inform){
+		   	
+		   var va =document.getElementById(id).value;
+		   if(va==""){
+		   		document.getElementById(id+"span").innerHTML ="<font color='red'>"+inform+"</font>"
+		   }else{
+		   	document.getElementById(id+"span").innerHTML="";
+		   }
+		   }*/
+		   /*dropdowlist*/
+		  var country = new Array(2);
+		  	country[0]= new Array("New York","New Jersey","Ohio");
+		  	country[1]= new Array("Beijing","Shanghai","Sicuang","Changsha");
+		  	
+		  /*function changeCity(val){
+		  	var countryEle=document.getElementById("countries");
+		  	countryEle.options.length=0;
+		  	for(var i=0 ;i<country.length;i++){
+		  		if(val==i){
+		  			for(var j=0;j<country[i].length;j++){
+		  				var createNode=document.createTextNode(country[i][j]);
+		  				var cEle=document.createElement("option");
+		  				cEle.appendChild(createNode);
+		  				countryEle.appendChild(cEle);
+		  			}
+		  		}
+		  	}
+		  }*/
+		  $(function(){
+		  	$("#coutryoption").change(function(){
+		  		var val=this.value;
+		  		$("#countries").empty();
+		  		$.each(country, function(i,n) {
+		  			if(val==i){
+		  				$.each(country[i], function(j,m) {
+		  					var createNode= document.createTextNode(m);
+		  					var cEle=document.createElement("option");
+		  					$(cEle).append(createNode);
+		  					$(cEle).appendTo($("#countries"))
+		  				});
+		  			}
+		  		});
+		  	})
+		  })
+	
+	</script>
+
+	</head>
+	
+	<body onload="init()">
+		
+		<table border="1px" width="1300px" align="center" cellpadding="0px" cellspacing="0px">
+			
+			<img src="../img/thumb-1920-888641.jpg" id="showad" style="display: none;"/>
+			
+			<tr>
+				<td>
+					
+					<table border="1px" width="100%">
+						<tr height="50px">
+							<td width="33.3%">
+								<img src="../img/title.png" height="47px" />
+							</td>
+							<td width="33.3%">
+								<img src="../img/photo651.png" height="47px" />
+								<input type="button" onclick="redirect()" value="Clike Me to WelcomePage" />
+							</td>
+							<td width="33.3%">
+								
+								<a href="#">Login</a>&nbsp;&nbsp;
+								<a href="#">Register</a>&nbsp;&nbsp;
+								<a href="https://www.amazon.com/">Shopping</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<!--3.导航栏-->
+			<tr height="50px">
+				<td bgcolor="black">
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="index.html">
+						<font size="5" color="white">MainPage</font>
+					</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="https://github.com/chenjunyu1005">
+						<font color="white">GihubPage</font>
+					</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="http://www.qc.cuny.edu/Pages/home.aspx">
+						<font color="white">QueensCollege</font>
+					</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="#">
+						<font color="white">Email</font>
+					</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="#">
+						<font color="white">chenjunyu1005@gmail.com</font>
+					</a>
+				</td>
+			</tr>
+			
+           	<tr>
+           		<td>
+           			<img src="../img/1.jpg" width="1300px" id="changepicture"/>
+           		</td>
+           	</tr>
+			<tr>
+				<td height="600px" background="../img/regist_bg.jpg"> 
+					<form action="#" method="get" onsubmit="return checkform()" id="register">
+					<table border="1px" width="750px" height="400px" align="center" cellpadding="0px" cellspacing="0px" bordercolor="white">
+						<tr height="40px">
+							<td colspan="2">
+								&nbsp;<font size="4" color="aqua">Register </font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fill in information
+							</td>
+						
+							
+						</tr>
+						<tr>
+							<td>Username</td>
+							<td><input type="text" name ="username" id ="user" maxlength="10" placeholder="Enter Username" onfocus="remind('user','Start with letter')" onblur="checkUser('user','Username can not be empty')"/><span id="userspan"></span> </td>
+							
+						</tr> 
+						<tr>
+							<td>password</td>
+							<td><input type="password" name="password" id="password" placeholder="Enter password" onfocus="remind('password','Start with letter')" onblur="checkUser('password','Password can not be empty')"/><span id="passwordspan"></span></td>
+							
+						</tr>
+						<tr>
+							<td>Confirm Password</td>
+							<td><input type="password" id="comfirmpassword" name="comfirmpassword"/></td>
+							
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td><input type="email" name="email" id="email" /></td>
+							
+						</tr>
+						<tr>
+							<td>Name</td>
+							<td><input type="text" name="name" id="name"/></td>
+							
+						</tr>
+						<tr>
+							<td> Country </td> 
+							<td>
+						<select onchange="changeCity(this.value)" id="coutryoption">
+	     	            <option>-Please Select- </option>
+	     	            <option value="0">China </option>
+	     	            <option value="1">USA</option>
+	   	                </select>
+	   	                <select id ="countries">
+	                    </select>
+	     			 </td>
+	                    
+		  				</tr>
+						<tr>
+							<td>Sex</td>
+							<td><input type="radio" name="sex" value="Male"/> Male
+<input type="radio" name="sex" value="female">Female
+	<label for="sex" ></label>
+							</td>
+							
+						</tr>
+						<tr>
+							<td>Date of Birth</td>
+							<td><input type="text" name="birthday"  /></td>
+							
+						</tr>
+						<tr>
+							<td>code</td>
+							<td><input type="text" name="code"  /><img src="../img/yanzhengma.png" /></td>
+							
+							
+							
+						</tr>
+						<tr>
+							<td colspan="2"><input type="submit" name="submit" value="Submit" /></td>
+							
+							
+						</tr>
+					</table>
+					</form>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<!--3*7 table-->
+					<table border="1px" width="100%">
+						<tr height="50px">
+							<td colspan="7">
+								&nbsp;&nbsp;
+								<font size="5">Comics</font>&nbsp;&nbsp;
+								<img src="../img/op2.png" />
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2" width="190px" height="500px">
+								<img src="../img/vrsa_ver1007474.jpg" width="100%" height="100%" />
+							</td>
+							<td colspan="3" width="555px" height="250px">
+								<a href="#"><img src="../img/op1.jpg" width="100%" height="100%" /></a>
+							</td>
+							<td width="185px" height="250px" align="center">
+								<a href="#"><img src="../img/p2.png" /></a><br />
+								<a href="#"><font color="gray">OnePiece</font></a><br /><br />
+								<font color="red">Captain</font>
+							</td>
+							<td width="185px" height="250px" align="center">
+								<a href="#"><img src="../img/p2.png" /></a><br />
+								<a href="#"><font color="gray">OnePiece</font></a><br /><br />
+								<font color="red">Captain</font>
+							</td>
+							<td width="185px" height="250px" align="center">
+								<a href="#"><img src="../img/p2.png" /></a><br />
+								<a href="#"><font color="gray">OnePiece</font></a><br /><br />
+								<font color="red">Captain</font>
+							</td>
+						</tr>
+						<tr>
+							<td width="185px" height="250px" align="center">
+								<a href="#"><img src="../img/p2.png" /></a><br />
+								<a href="#"><font color="gray">OnePiece</font></a><br /><br />
+								<font color="red">Captain</font>
+							</td>
+							<td width="185px" height="250px" align="center">
+								<a href="#"><img src="../img/p2.png" /></a><br />
+								<a href="#"><font color="gray">OnePiece</font></a><br /><br />
+								<font color="red">Captain</font>
+							</td>
+							<td width="185px" height="250px" align="center">
+								<a href="#"><img src="../img/p2.png" /></a><br />
+								<a href="#"><font color="gray">OnePiece</font></a><br /><br />
+								<font color="red">Captain</font>
+							</td>
+							<td width="185px" height="250px" align="center">
+								<a href="#"><img src="../img/p2.png" /></a><br />
+								<a href="#"><font color="gray">OnePiece</font></a><br /><br />
+								<font color="red">Captain</font>
+							</td>
+							<td width="185px" height="250px" align="center">
+								<a href="#"><img src="../img/p2.png" /></a><br />
+								<a href="#"><font color="gray">OnePiece</font></a><br /><br />
+								<font color="red">Captain</font>
+							</td>
+							<td width="185px" height="250px" align="center">
+								<a href="#"><img src="../img/p2.png" /></a><br />
+								<a href="#"><font color="gray">OnePiece</font></a><br /><br />
+								<font color="red">Captain</font>
+							</td>
+						</tr>
+					</table>
+
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="center">
+					<a href="table.html">TableDemo</a>&nbsp;&nbsp;
+					<a href="#">Contact</a>
+					
+					<p>
+						Copyright © 2017-2018 
+					</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>

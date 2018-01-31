@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Tables</title>
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			/*window.onload=function(){
+			var tblEle =document.getElementById("table1");
+			var len = tblEle.tBodies[0].rows.length;
+			for(var i=0;i<len;i++){
+			if(i%2==0){
+				tblEle.tBodies[0].rows[i].style.backgroundColor="pink";
+			}else{
+				tblEle.tBodies[0].rows[i].style.backgroundColor="yellow";
+			}
+		}
+}*/
+          $(function(){
+          	$("tbody tr:even").addClass("even");
+          	$("tbody tr:odd").addClass("odd");
+          	
+          })
+//        checkALL
+          $(function(){
+          	$("#checkAll").click(function(){
+          		$("tbody input").prop("checked",this.checked);
+          	})
+          })
+//			onmouseover and onmouseout
+			function changeColor(id,flag){
+				if(flag=="over"){
+					document.getElementById(id).style.backgroundColor="palegreen";
+				}else if(flag=="out"){
+			document.getElementById(id).style.backgroundColor="lightcyan";
+
+				}
+			}
+		/*	check all the list */
+			/*function checkAll(){
+			var checkEle =document.getElementById("checkAll");
+				if(checkEle.checked==true){
+					var checkNameEle =document.getElementsByName("checkname");
+				   for(var i=0 ; i<checkNameEle.length;i++){
+				   	checkNameEle[i].checked=true;
+				   }
+				}else{
+					var checkNameEle =document.getElementsByName("checkname");
+				   for(var i=0 ; i<checkNameEle.length;i++){
+				   	checkNameEle[i].checked=false;
+					
+				}
+			}
+		}*/
+		</script>
+	</head>
+	<body>
+		<table  border="1px" cellspacing="5px" cellpadding="5px" align="center" id="table1">
+			<thead>
+			<tr >
+				<td colspan="4">
+					<input type="button"value="add" />
+					<input type="button"value="delete" />
+					</td>
+				</tr>
+			<tr onmouseover="changeColor('tr1','over')" onmouseout="changeColor('tr1','out')" id="tr1">
+				<th><input type="checkbox" id="checkAll" onclick="checkAll()" /></th>
+				<th>head1</th>
+				<th>head2</th>
+				<th>head3</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<th><input type="checkbox" name="checkname" /></th>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<th><input type="checkbox" name="checkname"  /></th>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+			<tr>
+	             <th><input type="checkbox" name="checkname" /></th>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+			<tr>
+			<th><input type="checkbox" name="checkname"  /></th>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
